@@ -1,0 +1,43 @@
+{%- macro render_tag(tag) -%}
+<h4>
+  <span class="tag-item label label-tag">
+    <a href="{{ url_for('tag_view.tag', tag=tag.tag) }}" class="tag-item">{{ tag.tag }}</a></span>
+</h4>
+{%- endmacro -%}
+
+{%- macro render_tags(tags) -%}
+    {%- for tag in tags -%}
+       {{ render_tag(tag) }}
+    {%- endfor -%}
+{%- endmacro -%}
+
+{%- macro render_post_management(post, size=16) -%}
+<div class="post-management icon-{{ size }}">
+  {%- if post.can_edit_post() -%}
+  {# Link to   #}
+  {%- endif -%}
+
+  {%- if post.can_delete_post() -%}
+  <a href="#" data-href="{{ url_for('post_view.index', post_slug=post.slug, action='delete') }}" class="action-icon-backlight delete-post"
+    data-bind="click: deletePost">
+    <i class="icon-trash"></i> Delete post
+  </a>
+  {%- endif -%}
+</div>
+{%- endmacro -%}
+
+{%- macro render_post_icons(post, size=16) -%}
+<div class="post-management-icons icon-{{ size }}">
+  {%- if post.can_edit_post() -%}
+  <a href="{{ url_for('post_view.index', post_slug=post.slug, action='edit') }}" class="action-icon-backlight edit-post">
+    <i class="icon-pencil"></i>
+  </a>
+  {%- endif -%}
+
+  {%- if post.can_delete_post() -%}
+  <a href="{{ url_for('post_view.index', post_slug=post.slug, action='delete') }}" class="action-icon-backlight delete-post">
+    <i class="icon-trash"></i>
+  </a>
+  {%- endif -%}
+</div>
+{%- endmacro -%}
