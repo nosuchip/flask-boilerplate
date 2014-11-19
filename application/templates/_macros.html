@@ -1,0 +1,32 @@
+{%- macro render_errors(field, cls='', field_attrs={}) -%}
+    {%- if field.errors -%}
+    <div class="field-errors">
+      <ul>
+        {%- for error in field.errors -%}
+          <li>{{- error|safe -}}</li>
+        {%- endfor -%}
+      </ul>
+    </div>
+    {%- endif -%}
+{%- endmacro -%}
+
+{%- macro render_field(field, cls='', field_attrs={}) -%}
+    {%- if field.type == 'BooleanField' -%}
+      <label class="checkbox1">
+        {{ field(class=clss, **field_attrs) }} {{ field.label }}
+        {%- if field.errors -%}
+          {{ render_errors(field, cls, field_attrs) }}
+        {%- endif -%}
+      </label>
+    {%- elif field.type == 'SubmitField' -%}
+        {{ field(class=cls + ' btn btn-primary btn-large', **field_attrs)|safe }}
+    {%- else -%}
+        <div class="form-group">
+          <label for="{{ field.id }}">{{ field.label.text }}</label>
+          {{ field(class=cls + ' form-control', placeholder=field.placeholder, **field_attrs) }}
+          {%- if field.errors -%}
+            {{ render_errors(field, cls, field_attrs) }}
+          {%- endif -%}
+        </div>
+    {%- endif -%}
+{%- endmacro -%}

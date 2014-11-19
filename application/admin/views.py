@@ -2,7 +2,7 @@
 from flask.ext.admin.contrib.sqla import ModelView
 from application.config.app import ADMIN_CONFIG
 from flask.ext.security import current_user
-
+from flask.ext.admin.base import MenuLink
 
 class AdminModelView(ModelView):
     page_size = ADMIN_CONFIG['page_size']
@@ -32,5 +32,5 @@ class AdminModelView(ModelView):
 def add_admin_views(admin):
     #admin.add_view(AdminSampleView(SampleModel, 'Sample', category='Sample'))
 
-    admin.add_link(MenuLink(name='Portal', url='/'))
+    admin.add_link(MenuLink(name='Home', url='/'))
     admin.add_link(MenuLink(name='Log Out', url='/logout/'))

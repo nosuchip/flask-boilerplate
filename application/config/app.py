@@ -1,3 +1,5 @@
+APP_NAME = 'Flask Boilerplate'
+
 PAGES = {
     'home' : {
         'template': 'home.html',
@@ -46,4 +48,3 @@ PAGES = {
 ADMIN_CONFIG = {
     'page_size': 15
 }
-

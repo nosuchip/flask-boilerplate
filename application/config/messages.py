@@ -43,6 +43,15 @@ _field_configs = {
     }, 'DATE_MODIFIED': {
         'label': 'Date Modified',
         'description': 'Date when record was updated last time'
+    }, 'EMAIL': {
+        'label': 'Email',
+        'description': ''
+    }, 'PASSWORD': {
+        'label': 'Password',
+        'description': ''
+    }, 'REMEMBER_ME': {
+        'label': 'Remember me next time',
+        'description': ''
     }
 }
 

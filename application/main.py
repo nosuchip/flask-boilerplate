@@ -2,14 +2,16 @@
 
 import os
 from flask import Flask
-from application.extensions import babel, mail, db
+from application.extensions import babel, mail, db, assets
 from application.routes import configure_routes
 from application.security import init_security
 from application.admin import init_admin
-
+from application.core import filters
 
 def init(name):
     app = Flask(name)
+
+    app.jinja_env.filters['app_config_item'] = filters.app_config_item
 
     configure_app(app)
     init_extensions(app)
@@ -46,14 +48,14 @@ def init_signals(app):
 
 
 def init_blueprints(app):
+    pass
     #Views
-
     #from application.security.views import module as user_view
     #app.register_blueprint(user_view, url_prefix='')
 
     #Services
-    from application.service.comment import module as comment_view
-    app.register_blueprint(comment_view, url_prefix='/service/comment')
+    #from application.service.comment import module as comment_view
+    #app.register_blueprint(comment_view, url_prefix='/service/comment')
 
 
 app = init(__name__)

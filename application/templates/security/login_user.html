@@ -1,0 +1,28 @@
+{%- extends 'index.html' -%}
+{%- from '_macros.html' import render_field -%}
+
+{%- block page_body -%}
+    <form action="{{ url_for_security('login') }}"
+        method="POST" name="login_user_form" class="security-form">
+        {{ login_user_form.hidden_tag() }}
+        {{ render_field(login_user_form.email) }}
+        {{ render_field(login_user_form.password) }}
+        {{ render_field(login_user_form.remember) }}
+
+        <div class="forgot-link pull-right">
+            <a href="{{ url_for_security('forgot_password') }}">
+                {{- gettext('Forgot Your Password?') -}}
+            </a>
+        </div>
+
+        <div class="form-group">
+          {{ render_field(login_user_form.submit) }}
+
+          or
+          <a href="{{ url_for_security('register') }}">
+              {{ gettext('Sign Up') }}
+          </a>
+        </div>
+
+  </form>
+{%- endblock -%}

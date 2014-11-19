@@ -1,9 +1,22 @@
 # -*- coding: utf-8 -*-
+
 import flask.ext.security.forms as forms
-from wtforms import validators, StringField, PasswordField
+from wtforms import validators, StringField, PasswordField, BooleanField
 from flask.ext.wtf import Form
 from application.core.filters import strip, lower
 from application.config.messages import get_field_label
+
+
+class LoginForm(forms.LoginForm):
+    remember = BooleanField('remember', default=True)
+
+    def __init__(self, *args, **kwargs):
+        super(LoginForm, self).__init__(*args, **kwargs)
+
+        self.email.label.text = get_field_label('EMAIL')
+        self.password.label.text = get_field_label('PASSWORD')
+        self.remember.label.text = get_field_label('REMEMBER_ME')
+        self.submit.label.text = get_field_label('LOGIN')
 
 
 class RegisterInfoMixin():
