@@ -1,1 +1,5 @@
-*.py[cd]
+__pycache__
+.py[cod]
+*.bat
+.env
+.venv
