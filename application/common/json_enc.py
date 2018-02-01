@@ -29,4 +29,4 @@ class ExtendedJSONEncoder(json.JSONEncoder):
         elif isinstance(obj, date):
             return obj.strftime(DATE_FORMAT)
 
-        return super(PickettJSONEncoder, self).default(obj)
+        return super(ExtendedJSONEncoder, self).default(obj)
